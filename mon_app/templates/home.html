@@ -1,0 +1,596 @@
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #1e0a3c;
+            color: #ffffff;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: #1e0a3c;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 95%;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar .logo img {
+            height: 50px;
+        }
+        .navbar .nav-links {
+            display: flex;
+            align-items: center;
+        }
+        .navbar .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            position: relative;
+            overflow: hidden;
+            transition: color 0.3s ease;
+        }
+        .navbar .nav-links a::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #8A2BE2;
+            visibility: hidden;
+            transform: scaleX(0);
+            transition: all 0.3s ease-in-out;
+        }
+        .navbar .nav-links a:hover::before {
+            visibility: visible;
+            transform: scaleX(1);
+        }
+        .navbar .nav-links a:hover {
+            color: #F4A261;
+        }
+        .navbar .nav-links a.active {
+            color: #8A2BE2;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 100px 50px 50px;
+        }
+        .intro {
+            max-width: 50%;
+        }
+        .intro p {
+            font-size: 24px;
+            margin: 0;
+        }
+        .intro h1 {
+            font-size: 48px;
+            margin: 10px 0;
+        }
+        .intro h2 {
+            font-size: 36px;
+            margin: 10px 0;
+        }
+        .intro .typing-effect {
+            color: #8A2BE2;
+        }
+
+
+.icon img {
+    width: 50px; /* Ajustez la taille selon vos besoins */
+    transition: transform 0.3s ease; /* Transition pour l'animation */
+}
+
+.icon:hover img {
+    transform: translateY(-10px); /* Déplacement vers le haut */
+}
+
+
+.social-icons a {
+    opacity: 0; /* Masque les icônes initialement */
+    font-size: 24px;
+    margin: 0 10px;
+    display: inline-block;
+    color: #8A2BE2;
+    animation: fadeIn 1s forwards ease; /* Animation d'apparition */
+    transition: transform 0.3s ease; /* Transition pour le changement de taille */
+}
+
+.social-icons a:nth-child(1) {
+    animation-delay: 0.2s; /* Délai d'animation pour la 1ère icône */
+}
+
+.social-icons a:nth-child(2) {
+    animation-delay: 0.4s; /* Délai d'animation pour la 2ème icône */
+}
+
+.social-icons a:nth-child(3) {
+    animation-delay: 0.6s; /* Délai d'animation pour la 3ème icône */
+}
+
+.social-icons a:nth-child(4) {
+    animation-delay: 0.8s; /* Délai d'animation pour la 4ème icône */
+}
+
+/* Définition de l'animation d'apparition */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px); /* Position de départ (vers le bas) */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* Position finale */
+    }
+}
+
+/* Effet de survol */
+.social-icons a:hover {
+    transform: scale(1.2); /* Agrandit l'icône au survol */
+}
+
+        .intro .social-icons a:hover {
+            color: #F4A261;
+        }
+
+        .social-icons {
+            display: inline-flex;
+            padding: 10px 0;
+    justify-content: center;
+    gap: 20px; /* Espacement entre les icônes */
+}
+        .intro .download-btn {
+ 
+            background-color: #8A2BE2;
+            color: #1e0a3c;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            margin-top: 20px;
+            position:absolute;
+            overflow: hidden;
+ 
+        }
+        .intro .download-btn:hover {
+            background-color: #F4A261;
+        }
+        .profile-pic img {
+            height: 300px;
+            border-radius: 60%;
+        }
+        .about, .container2, .portfolio-bars, .services{
+            padding: 50px;
+            text-align: center;
+        }
+        .about h2, .portfolio-bars h2,.services h2{
+     
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+    
+        .about p, .portfolio-bars p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .about .about-card:hover {
+            color: #F4A261;
+        }
+        .about-content {
+    display: flex; /* Enable flexbox */
+    align-items: center; /* Vertically center items */
+    justify-content: flex-start; /* Align items to the start */
+}
+
+#image-container {
+    margin-left: 20px; /* Space between the paragraph and image */
+}
+
+/* Initial state: the image is hidden off-screen to the right */
+.hidden {
+    opacity: 0;
+    transform: translateX(100%); /* Start off-screen to the right */
+    transition: all 1s ease-in-out; /* Animation duration and easing */
+}
+
+/* Final state: the image is fully visible */
+.visible {
+    opacity: 1;
+    transform: translateX(0); /* Move to the normal position */
+    transition: all 1s ease-in-out;
+}
+
+/* Image styling */
+#image-container img {
+    width: 100%;
+    height: auto;
+    max-width: 300px; /* Limit image width */
+    border-radius: 10px; /* Optional: rounded corners */
+    margin-bottom: 20px; /* Space below the image */
+}
+
+
+
+        .container2 {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .container2 .card:hover {
+            color: #F4A261;
+        }
+        .card {
+            background-color: #1e0a3c;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+            margin: 20px;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .card p {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        .card .icon {
+            font-size: 40px;
+            color: #8A2BE2;
+            margin-bottom: 20px;
+        }
+        .card .button {
+            background-color: #8A2BE2;
+            border: none;
+            border-radius: 20px;
+            color: #1e0a3c;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 10px 20px;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .card .button:hover {
+            background-color: #F4A261;
+            transform: scale(1.1);
+        }
+        .Skills-bars, .portfolio-bars {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .Skills-item, .portfolio-item {
+            background-color: #1e0a3c;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+            margin: 20px;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+        .Skills-item h3, .portfolio-item h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .Skills-item p, .portfolio-item p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .contact-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #1e0a3c; /* Fond clair pour le formulaire */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+    width: 100%;
+    max-width:1500px; /* Largeur maximale */
+    margin: 0 auto; /* Centrage */
+    opacity: 0; /* Départ invisible pour animation d'entrée */
+    transform: translateY(20px); /* Déplacement vers le bas pour l'animation */
+    animation: fadeInUp 0.5s forwards; /* Animation d'entrée */
+    transition: transform 0.3s ease;
+}
+.card:hover {
+            transform: scale(1.05);
+        }
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1; /* Fin de l'animation, visible */
+        transform: translateY(0); /* Retour à la position d'origine */
+    }
+}
+
+.contact-form input, .contact-form textarea {
+    width: 80%;
+    padding: 12px; /* Augmentation du padding */
+    margin: 10px 0;
+    border: 1px solid #ddd; /* Bordure claire */
+    border-radius: 5px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transition pour l'effet d'animation */
+    font-size: 16px; /* Taille de police uniforme */
+}
+
+.contact-form input:focus, .contact-form textarea:focus {
+    border-color: #8A2BE2; /* Couleur de la bordure au focus */
+    outline: none; /* Suppression du contour par défaut */
+    box-shadow: 0 0 5px rgba(138, 43, 226, 0.5); /* Ombre lors du focus */
+    transform: translateY(-2px); /* Effet de levage lors du focus */
+}
+
+.contact-form button {
+    background-color: #8A2BE2;
+    border: none;
+    border-radius: 20px;
+    color: #ffffff; /* Couleur du texte en blanc */
+    cursor: pointer;
+    font-size: 16px;
+    padding: 12px 24px; /* Augmentation du padding */
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 10px; /* Espacement entre le bouton et les champs */
+}
+
+.contact-form button:hover {
+    background-color: #F4A261;
+    transform: scale(1.05); /* Légère réduction de l'échelle au survol */
+    animation: pulse 0.6s infinite; /* Animation de pulsation */
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05); /* Expansion */
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.contact-form button:focus {
+    outline: none; /* Suppression du contour par défaut */
+}
+
+.contact-form h2 {
+    font-size: 24px; /* Taille de police pour le titre */
+    margin-bottom: 20px; /* Espacement sous le titre */
+    color: #1e0a3c; /* Couleur du texte du titre */
+}
+
+        .about-card {
+            background-color: #1e0a3c;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+            margin: 20px auto;
+            padding: 20px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .about-card:hover {
+            transform: scale(1.05);
+            color: #F4A261;
+        
+        }
+        .about-card h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .about-card p {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        .about-card .icon {
+            font-size: 40px;
+            color: #8A2BE2;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <div class="navbar">
+        <div class="logo">
+            <img src="{% static 'images/logo.png' %}" alt="Logo Portfolio"/>
+        </div>
+        <div class="nav-links">
+            <a class="active" href="#">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="intro">
+            <p>Hello, It's Me</p>
+            <h1>Islem Naimi</h1>
+            <h2>And I'm a <span class="typing-effect" id="typed"></span></h2>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com" target="_blank" class="icon">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com" target="_blank" class="icon">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://twitter.com" target="_blank" class="icon">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://www.instagram.com" target="_blank" class="icon">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.tiktok.com" target="_blank" class="icon">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+            </div>
+            
+            <div><a class="download-btn" href="#">Download CV</a></div>
+        </div>
+        <div class="profile-pic">
+            <img src="{% static 'images/pd.png' %}" alt="Profile Picture"/>
+        </div>
+    </div>
+
+    <div class="about" id="about" >
+        <div class="about-card">
+            <div class="icon"><i class="fas fa-user"></i></div>
+            <h2>About Me</h2>
+            <div class="about-content">
+            <p>I am a Front-End Developer with experience in web development and a strong foundation in data visualization. I have developed web platforms and dashboards for business management and recruitment. My expertise lies in HTML, CSS, JavaScript, and front-end frameworks like React. I’m driven by a passion for clean, responsive design and efficient code.
+                <div id="image-container" class="hidden">
+                    <img src="your-image-url.jpg" alt="About Me Image">
+                </div>
+            </p>   
+            </div>         <!-- Image container -->
+           
+        </div>
+    </div>
+    
+    <div class="services">
+    <h2>My Services</h2> 
+    <div class="container2">
+        
+        <div class="card">
+            <div class="icon"><i class="fas fa-code"></i></div>
+            <h2>Data Visualization</h2>
+            <p>I specialize in data visualization services that transform complex data into clear and actionable insights. Utilizing tools like Power BI and Python, I create interactive dashboards and visual representations to enhance decision-making processes for businesses and organizations.</p>
+            <a href="#" class="button">Contact me</a>
+        </div>
+        <div class="card">
+            <div class="icon"><i class="fas fa-laptop-code"></i></div>
+            <h2>Web Development</h2>
+            <p>I offer full-stack web development services, leveraging frameworks such as Django and React to build dynamic, user-friendly applications. My focus is on creating responsive designs that ensure optimal performance and usability across various devices.</p>
+            <a href="#" class="button">Contact me</a>
+        </div>
+        <div class="card">
+            <div class="icon"><i class="fas fa-database"></i></div>
+            <h2>Data Analysis</h2>
+            <p>As a Data Analyst, I provide comprehensive data analysis services that involve statistical modeling and predictive analytics. I help organizations harness the power of their data to make informed decisions and drive strategic growth.</p>
+            <a href="#" class="button">Contact me</a>
+        </div>
+    </div>
+</div>
+    <div class="about" id="skills">
+        <h2>Technical Skills</h2>
+        <div class="container2">
+            <div class="card">
+                <div class="icon"><i class="fas fa-laptop-code"></i></div>
+                <h3>Front-End Development</h3>
+                <p>HTML<br>CSS<br>JavaScript<br>React<br>Angular</p>
+            </div>
+            <div class="card">
+                <div class="icon"><i class="fas fa-paint-brush"></i></div>
+                <h3>Web Design</h3>
+                <p>Responsive Design<br>Cross-Browser Compatibility<br>User-Friendly Interfaces</p>
+            </div>
+            <div class="card">
+                <div class="icon"><i class="fas fa-chart-bar"></i></div>
+                <h3>Data Visualization</h3>
+                <p>Creating Interactive Dashboards using Power BI<br>Statistical Visualization with Python</p>
+            </div>
+            <div class="card">
+                <div class="icon"><i class="fas fa-code"></i></div>
+                <h3>Programming Languages</h3>
+                <p>Python<br>JavaScript<br>C#<br>Java<br>C++<br>R</p>
+            </div>
+            <div class="card">
+                <div class="icon"><i class="fas fa-tools"></i></div>
+                <h3>Frameworks & Tools</h3>
+                <p>Django<br>Flask<br>React<br>Angular</p>
+            </div>
+            <div class="card">
+                <div class="icon"><i class="fas fa-cogs"></i></div>
+                <h3>Other Skills</h3>
+                <p>Version Control (Git)<br>Data Analysis & Modeling<br>Statistical Techniques</p>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="about" id="portfolio">
+        <h2>Portfolio</h2>
+        <div class="container2">
+            <div class="card">
+                <div class="icon"><i class="fas fa-briefcase"></i></div>
+                <h3>Business Management Platform</h3>
+                <p>Developed a comprehensive business management platform that supports user authentication, recruitment processes, and study management for a consulting firm.</p>
+            </div>
+            <div class="card">
+                <div class="icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Data Visualization Dashboard</h3>
+                <p>Created an interactive dashboard for visualizing business expenses and project data, allowing users to make informed decisions through clear and actionable insights.</p>
+            </div>
+            <div class="card">
+                <div class="icon"><i class="fas fa-seedling"></i></div>
+                <h3>Agricultural Greenhouse Automation Platform</h3>
+                <p>Developed a web platform to remotely control and automate the climate of agricultural greenhouses, including monitoring and adjusting parameters based on crop type.</p>
+            </div>
+            <div class="card">
+                <div class="icon"><i class="fas fa-file-alt"></i></div>
+                <h3>CV Processing Automation Platform</h3>
+                <p>Designed a platform to automate the process of importing, selecting, and displaying candidate resumes, improving recruitment efficiency.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="about" id="contact">
+        <h2>Contact</h2>
+        <form class="contact-form" action="/submit-form" method="POST">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+
+    <script src="{% static 'js/scripts.js' %}"></script>
+   
+    <script>
+        // Initialisation de Typed.js
+        var typed = new Typed('#typed', {
+            strings: ["Frontend Developer"],
+            typeSpeed: 50,
+            backSpeed: 50,
+            loop: true
+        });
+    </script>
+</body>
+</html>
